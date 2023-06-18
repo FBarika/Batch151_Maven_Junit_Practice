@@ -16,7 +16,10 @@ import java.util.List;
 
 public class C04 {
 
+    /*Bir testte sadece arama yapilacak veya gorunurluk sorgulanacaksa (cikan urune click yapmamak kaydiyla) before ve after methodlari yerine
+            beforeclass ve afterclass methodlari kullanildiginda tek browser'da tum methodlari test etmis oluruz
 
+         */
     WebDriver driver;
 
     @Before
