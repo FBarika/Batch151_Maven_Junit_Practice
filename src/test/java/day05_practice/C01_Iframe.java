@@ -23,38 +23,46 @@ public class C01_Iframe extends TestBase {
 
         WebElement iframe = driver.findElement(By.xpath("//iframe[@src='https://www.youtube.com/embed/x3kfyZJhC3U?rel=0&showinfo=0']"));
         driver.switchTo().frame(iframe);
+        /*
+        iframe gecmenin 3 yolu var biri html kodlarinda name veya id atribütü varsa, web elemnt locatini yazarak ve iframe in indexini yazarak gecebiliriz.
+        //iframe yazdigimizda mesela 2 tane cikti --> driver.switchTo().frame(0); yazarak birinci olan iframe aliyoruz.
+        */
 
         WebElement playTusu = driver.findElement(By.xpath("//*[@class='ytp-large-play-button ytp-button ytp-large-play-button-red-bg']"));
         playTusu.click();
-
+        bekle(3);
         /*
         play'i dogru locate edip click yapmamiza ragmen video 'yu ilk etapta calistirmadi.Bunun üzerine HTML kodlarini inceleyince play in aslinda bir
         iframe icinde oldugunu gördük.Bu durumda önce iframe locate edip sonra switchTo ile iframe gecmeliyiz.
-
         */
 
-        bekle(3);
         // videoyu durdurunuz
-        driver.findElement(By.id("movie_player")).click();
+        WebElement videoDurdur = driver.findElement(By.id("movie_player"));
+        videoDurdur.click();
         bekle(3);
 
         // videoyu tam ekran yapınız
-        driver.findElement(By.xpath("//button[@class='ytp-fullscreen-button ytp-button']")).click();
+        WebElement videoTamEkran = driver.findElement(By.xpath("//button[@class='ytp-fullscreen-button ytp-button']"));
+        videoTamEkran.click();
+        bekle(2);
 
-        bekle(2);
         // videoyu calıstırınız
-        driver.findElement(By.xpath("//button[@class='ytp-play-button ytp-button']")).click();
+        videoDurdur.click(); //video yu durdurdugumuz yerden calistirabiliyoruz da
         bekle(2);
+
         // videoyu kucultunuz
-        driver.findElement(By.xpath("//button[@class='ytp-fullscreen-button ytp-button']")).click();
+        videoTamEkran.click();
         bekle(2);
 
         // videoyu durdurunuz
-        driver.findElement(By.xpath("//button[@class='ytp-play-button ytp-button']")).click();
+        videoDurdur.click();
         bekle(2);
 
         // Videoyu calistirdiginizi test ediniz
 
+        /*
+        ne zaman videoyu calistirsak kösede youtube yazisi cikiyor bu yüzden o yazinin görünürlügünü test ediyoruz.
+         */
         WebElement youtubeYazisi = driver.findElement(By.xpath("//a[@class='ytp-youtube-button ytp-button yt-uix-sessionlink']"));
         Assert.assertTrue(youtubeYazisi.isDisplayed());
 
