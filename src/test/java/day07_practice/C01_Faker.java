@@ -25,11 +25,6 @@ public class C01_Faker extends TestBase {
 
 
 
-
-
-
-
-
         // geriye kalan alanlari TAB ile dolasarak faker bilgilerle formu doldurun
 
 
